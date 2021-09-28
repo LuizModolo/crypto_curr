@@ -135,5 +135,5 @@ function loadingRemove() {
 
 window.onload = () => {
   loadingScreen();
-  fillSections();  
+  fillSections();
 }
