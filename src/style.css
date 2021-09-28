@@ -28,6 +28,7 @@ ul {
 
 .nav-bar .title {
   font-size: 60px;
+  color: white;
   -webkit-text-stroke: 2px rgb(199, 113, 0); 
 }
 
