@@ -253,6 +253,19 @@ function loadingRemove() {
   section.remove();
 }
 
+const submitButton = document.querySelector('.button');
+submitButton.addEventListener('click', () => {
+  const emailInput = document.querySelector('.input');
+  const re = /\S+@\S+\.\S+/;
+  if (re.test(emailInput.value)) {
+    emailInput.value = '';
+    alert('E-mail cadastrado com sucesso!')
+  } else {
+    emailInput.value = '';
+    alert('E-mail inválido!')
+  }
+})
+
 window.onload = () => {
   loadingScreen();
   fillSections();
