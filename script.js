@@ -13,17 +13,24 @@ function createSection(main) {
   return newSection
 }
 
-function createRank(section, rank, title) {
+function createRank(section, rank, title, nameid) {
   const newSpan = document.createElement('span');
   newSpan.innerText = rank;
   if ( parseFloat(rank) < 0) {
     newSpan.style.color = 'red';
     newSpan.style.fontWeight = '900';
+    newSpan.innerText += '%';
   } else if ((title === '1h' || title ==='24h' || title ==='7d') && parseFloat(rank) > 0){
     newSpan.style.fontWeight = '900';
     newSpan.style.color = 'green';
+    newSpan.innerText += '%';
   } else if (title === 'Volume 24h' || title === 'Suprimento' || title === 'Market Cap') {
     newSpan.innerText = Number(newSpan.innerText).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } else if (title === 'Nome') {
+    const img = document.createElement('img');
+    img.style.height = '10px';
+    img.src = `https://cryptologos.cc/logos/thumbs/${nameid}.png?v=013`;
+    newSpan.appendChild(img);
   }
   section.appendChild(newSpan);
 }
@@ -35,7 +42,7 @@ function createMainContent(coins, key, main, title) {
   titleSpan.innerText = title;
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
-    createRank(newSection, coin[key], title);
+    createRank(newSection, coin[key], title, coin.nameid);
   });
 }
 
