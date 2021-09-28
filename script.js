@@ -17,6 +17,25 @@ const globalMarketCapVolume = ({ total_mcap, total_volume, mcap_change, volume_c
   }
 }
 
+const biggestLoserWinner = async () => {
+  const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
+  const winners = response.data.sort((a, b) => a.percent_change_24h - b.percent_change_24h).reverse().splice(0, 5);
+  const losers = response.data.sort((a, b) => a.percent_change_24h - b.percent_change_24h).splice(0, 5);
+
+  const winnerLi = document.getElementById('winners');
+  const loserLi = document.getElementById('losers');
+  
+  
+  winners.forEach((coin) => {
+    const li = document.createElement('li');
+    li.innerText = coin.name;
+    winnerLi.appendChild(li);
+  })
+
+  console.log(winners);
+  console.log(losers);
+}
+
 const getApi = async () => {
   const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const response2 = await fetch('https://api.coinlore.net/api/coin/markets/?id=90').then(response => response.json());
@@ -135,5 +154,6 @@ function loadingRemove() {
 
 window.onload = () => {
   loadingScreen();
-  fillSections();  
+  fillSections();
+  biggestLoserWinner();
 }
