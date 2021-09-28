@@ -1,5 +1,5 @@
 const getApi = async () => {
-  const response = await fetch(' https://api.coinlore.net/api/tickers/').then(response => response.json());
+  const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const response2 = await fetch('https://api.coinlore.net/api/coin/markets/?id=90').then(response => response.json());
   const response3 = await fetch('https://api.coinlore.net/api/global/').then(response => response.json());
   return { coins: response, exchanges: response2, global: response3 };
