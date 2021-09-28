@@ -55,8 +55,8 @@ body {
 .explore-crypto {
   display: flex;
   flex-direction: column;
-  height: 600px;
   align-items: center;
+  margin-bottom: 80px;
 }
 
 .explore-crypto h2 {
@@ -66,7 +66,6 @@ body {
 .total-mc {
   margin-top: 10px;
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: space-between;
   width: 650px;
@@ -79,9 +78,9 @@ body {
 }
 
 #crypto-info {
+  margin-top: 20px;
   display: flex;
   width: 700px;
-  height: 500px;
   justify-content: space-between;
   align-items: center;
 }
@@ -89,7 +88,6 @@ body {
 .biggest {
   width: 300px;
   height: 300px;
-  border-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -109,10 +107,14 @@ body {
 .main-content {
   display: flex;
   justify-content: space-evenly;
-  width: 98%;
+  width: 95%;
   margin: 20px auto;
-  border: solid 1px rgb(199, 113, 0);
   padding-top: 20px;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: rgba(240, 240, 240, 0.3);
+  box-shadow: 3px 3px 20px rgba(0,0,0,0.7);
+  transition: transform 500ms ease;
 }
 
 .coin-section {
