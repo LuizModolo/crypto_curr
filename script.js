@@ -171,11 +171,11 @@ function createMainContent(coins, key, main, title) {
       
     } else {
       if (parseFloat(target.nextElementSibling.innerText) > parseFloat(target.parentNode.lastChild.innerText)) {
-        coins.data.sort((a, b) => parseInt(a[key]) - parseInt(b[key]));
+        coins.data.sort((a, b) => a[key] - b[key]);
         document.querySelector('.main-content').innerHTML = '';
         fillSectionsSorted(coins);
       } else {
-        coins.data.sort((a, b) => parseInt(b[key]) - parseInt(a[key]));
+        coins.data.sort((a, b) => b[key] - a[key]);
         document.querySelector('.main-content').innerHTML = '';
         fillSectionsSorted(coins);
       }
