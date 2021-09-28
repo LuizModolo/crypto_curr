@@ -17,17 +17,17 @@ const globalMarketCapVolume = ({ total_mcap, total_volume, mcap_change, volume_c
   }
 }
 
-function createLogosBigAndLose(nameid, li) {
+function createLogosBigAndLose(nameid, span1) {
   if (nameid === 'axie-infinity') {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
     img.src = `https://monnos.com/wp-content/uploads/2021/08/axie-1.png`;
-    li.appendChild(img);
+    span1.appendChild(img);
   } else {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
     img.src = `https://cryptologos.cc/logos/thumbs/${nameid}.png?v=013`;
-    li.appendChild(img);
+    span1.appendChild(img);
   }
 }
 
@@ -37,23 +37,37 @@ const biggestLoserWinner = async () => {
   const winners = response.data.sort((a, b) => a.percent_change_24h - b.percent_change_24h).reverse().splice(0, 5);
   const losers = response.data.sort((a, b) => a.percent_change_24h - b.percent_change_24h).splice(0, 5);
 
-  const winnerLi = document.getElementById('winners');
-  const loserLi = document.getElementById('losers');
+  const winnerSec = document.getElementById('winners');
+  const loserSec = document.getElementById('losers');
 
   // Loop para exibir na tela o resultado ordenado das moedas com maior valorização
   winners.forEach((coin) => {
-    const li = document.createElement('li');
-    li.innerText = `(+${coin.percent_change_24h}%) ${coin.name}`;
-    createLogosBigAndLose(coin.nameid, li)
-    winnerLi.appendChild(li);
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    const span1 = document.createElement('span');
+    const span2 = document.createElement('span');
+    span1.innerText = `(+${coin.percent_change_24h}%)`
+    span2.innerText = `${coin.name}`;
+    span1.style.color = 'green'
+    createLogosBigAndLose(coin.nameid, span1)
+    div.appendChild(span1);
+    div.appendChild(span2);
+    winnerSec.appendChild(div);
   });
   
   // Loop para exibir na tela o resultado ordenado das moedas com menor valorização
   losers.forEach((coin) => {
-    const li = document.createElement('li');
-    li.innerText = `(${coin.percent_change_24h}%) ${coin.name}`;
-    createLogosBigAndLose(coin.nameid, li)
-    loserLi.appendChild(li);
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    const span1 = document.createElement('span');
+    const span2 = document.createElement('span');
+    span1.innerText = `(+${coin.percent_change_24h}%)`
+    span2.innerText = `${coin.name}`;
+    span1.style.color = 'red'
+    createLogosBigAndLose(coin.nameid, span1)
+    div.appendChild(span1);
+    div.appendChild(span2);
+    loserSec.appendChild(div);
   });
 }
 
