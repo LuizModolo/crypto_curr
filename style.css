@@ -95,11 +95,10 @@ ul {
 }
 
 .biggest {
-  width: 300px;
+  width: 320px;
   height: 300px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
   border-radius: 25px;
   padding: 25px;
   background-color: rgba(110, 110, 110, 0.3);
@@ -120,6 +119,24 @@ ul {
 .biggest li {
   margin: 0 0 15px 0px;
   font-size: 19px;
+}
+
+.arrow-icon {
+  display: flex;
+}
+
+.arrow-icon > i {
+  font-size: 22px;
+  color: white;
+  margin-right: 10px;
+}
+
+.arrow-icon .fa-level-down-alt {
+  color: red;
+}
+
+.arrow-icon .fa-level-up-alt {
+  color: green;
 }
 
 .main-content {
