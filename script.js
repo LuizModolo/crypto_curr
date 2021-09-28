@@ -138,7 +138,6 @@ async function sort({ target }, key) {
   const { coins } = await getApi();
   if (target.classList[1] === key && (key === 'symbol' || key === 'name')) {
     coins.data.sort();
-    console.log(coins.data);
     document.querySelector('.main-content').innerHTML = '';
     fillSectionsSorted(coins);
   }
@@ -151,11 +150,8 @@ function createMainContent(coins, key, main, title) {
   titleSpan.innerText = title;
   titleSpan.addEventListener('click', async ({ target }) => {
     const { coins } = await getApi();
-    console.log(target.classList[1])
-    console.log(key)
     if (target.classList[1] === key && (key === 'symbol' || key === 'name')) {
       coins.data.sort((a, b) => a[key] > b[key] && 1 || -1);
-      console.log(coins.data);
       document.querySelector('.main-content').innerHTML = '';
       fillSectionsSorted(coins);
     } else {
