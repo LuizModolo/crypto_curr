@@ -22,6 +22,8 @@ function createRank(section, rank, title) {
   } else if ((title === '1h' || title ==='24h' || title ==='7d') && parseFloat(rank) > 0){
     newSpan.style.fontWeight = '900';
     newSpan.style.color = 'green';
+  } else if (title === 'Volume 24h' || title === 'Suprimento' || title === 'Market Cap') {
+    newSpan.innerText = Number(newSpan.innerText).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   section.appendChild(newSpan);
 }
