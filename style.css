@@ -9,7 +9,6 @@
 body {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
-  background-color: rgb(14, 14, 14);
   color: white;
   background-image: url('./imgs/endless-constellation.svg');
   background-position: center;
@@ -79,6 +78,11 @@ span {
   display: flex;  
   margin: 5px;
   margin-bottom: 15px;
+}
+
+.logo-crypto {
+  height: 15px;
+  margin-left: 15px;
 }
 
 .loading-container {
