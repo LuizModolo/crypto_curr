@@ -7,13 +7,16 @@
 body {
   font-family: monospace;
   font-size: 16px;
+  background-color: rgb(14, 14, 14);
+  color: white;
 }
 
 .nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(221, 221, 221);
+  background-image: url('./imgs/endless-constellation.svg');
+  background-position: center;
 }
 
 .nav-bar .title {
@@ -86,3 +89,13 @@ span {
 
 
 @keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
+
+@media screen and (max-width: 600px) {
+  .test {
+    display: none;
+  }
+
+  .nav-bar .nav-list {
+    display: none;
+  }
+}
