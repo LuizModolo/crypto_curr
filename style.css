@@ -94,7 +94,7 @@ body {
   border-radius: 25px;
   position: relative;
   padding: 20px;
-  background-color: rgba(240, 240, 240, 0.3);
+  background-color: rgba(110, 110, 110, 0.3);
   box-shadow: 3px 3px 20px rgba(0,0,0,0.7);
   text-shadow: #000 1px 0 25px;
   transition: transform 500ms ease;
@@ -112,7 +112,7 @@ body {
   padding-top: 20px;
   border-radius: 25px;
   padding: 20px;
-  background-color: rgba(240, 240, 240, 0.3);
+  background-color: rgba(110, 110, 110, 0.3);
   box-shadow: 3px 3px 20px rgba(0,0,0,0.7);
   transition: transform 500ms ease;
 }
