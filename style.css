@@ -183,3 +183,27 @@ span {
     display: none;
   }
 }
+
+.footer {
+  text-align: center;
+  font-size: 120%;
+  margin-bottom: 20px;
+  color: white;
+  text-decoration: none;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer p {
+  padding: 10px;
+}
+
+.footer p a {
+  text-decoration: none;
+  color: rgb(199, 113, 0);
+}
+
+.footer p a:hover {
+  font-weight: 700;
+} 

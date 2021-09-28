@@ -51,6 +51,7 @@ const getApi = async () => {
   const response2 = await fetch('https://api.coinlore.net/api/coin/markets/?id=90').then(response => response.json());
   const response3 = await fetch('https://api.coinlore.net/api/global/').then(response => response.json());
   globalMarketCapVolume(response3[0]);
+  document.querySelector('.main-content').innerHTML = '';
   return { coins: response, exchanges: response2, global: response3 };
 }
 
@@ -166,4 +167,7 @@ window.onload = () => {
   loadingScreen();
   fillSections();
   biggestLoserWinner();
+  setInterval(() => {
+    fillSections();
+  }, 10000)
 }
