@@ -31,6 +31,7 @@ function createLogosBigAndLose(nameid, li) {
   }
 }
 
+// Traz informações da API de dados de  e ordena de acordo com o ganho das últimas 24h
 const biggestLoserWinner = async () => {
   const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const winners = response.data.sort((a, b) => a.percent_change_24h - b.percent_change_24h).reverse().splice(0, 5);
@@ -39,13 +40,15 @@ const biggestLoserWinner = async () => {
   const winnerLi = document.getElementById('winners');
   const loserLi = document.getElementById('losers');
 
+  // Loop para exibir na tela o resultado ordenado das moedas com maior valorização
   winners.forEach((coin) => {
     const li = document.createElement('li');
     li.innerText = `(+${coin.percent_change_24h}%) ${coin.name}`;
     createLogosBigAndLose(coin.nameid, li)
     winnerLi.appendChild(li);
   });
-
+  
+  // Loop para exibir na tela o resultado ordenado das moedas com menor valorização
   losers.forEach((coin) => {
     const li = document.createElement('li');
     li.innerText = `(${coin.percent_change_24h}%) ${coin.name}`;
@@ -54,6 +57,8 @@ const biggestLoserWinner = async () => {
   });
 }
 
+
+// Traz 
 const fetchNews = () => {
   const myHeaders = new Headers();
   myHeaders.append("authorization", "c075710bb2a4746fca0e92e034127a432b454e538b43e9f8291d4cb2e8fba8c2");
