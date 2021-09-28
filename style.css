@@ -34,10 +34,55 @@ body {
   align-items: center;
   margin-right: 25px;  
   font-weight: 900;
+  -webkit-text-stroke: 0.5px rgb(199, 113, 0);
 }
 
 .nav-bar .nav-list li:hover {
-  cursor: pointer;
-  -webkit-text-stroke: 0.5px rgb(199, 113, 0); 
+  cursor: pointer;   
   font-size: 19px;
 }
+
+.main-content {
+  display: flex;
+  justify-content: space-evenly;
+  width: 98%;
+  margin: 20px auto;
+  border: solid 1px rgb(199, 113, 0);
+}
+
+.coin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-span {
+  font-weight: 900;
+  -webkit-text-stroke: 0.5px rgb(199, 113, 0); 
+  cursor: pointer;
+}
+
+span {
+  display: flex;  
+  margin: 5px;
+}
+
+.loading-container {
+  position: absolute;
+  width: 1350px;
+  height: 3070px;
+  background-color: rgb(49, 28, 1);
+  opacity: 0.9;
+}
+
+.load-image {
+  opacity: 1;
+  width: 250px;
+  position: absolute;
+  left: 500px;
+  top: 180px;
+  animation:spin 1.7s linear infinite;
+}
+
+
+@keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
