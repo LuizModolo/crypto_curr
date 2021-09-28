@@ -100,3 +100,22 @@ span {
 }
 
 @keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
+
+.footer {
+  text-align: center;
+  font-size: 100%;
+  margin-bottom: 20px;
+  color: rgb(20, 40, 80);
+  text-decoration: none;
+  background-color: rgb(199, 113, 0);
+  padding: 25px;
+}
+
+.footer p a {
+  text-decoration: none;
+  color: rgb(20, 40, 80);
+}
+
+.footer p a:hover {
+  font-weight: 700;
+}

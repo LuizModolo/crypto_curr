@@ -5,6 +5,8 @@ const getApi = async () => {
   return { coins: response, exchanges: response2, global: response3 };
 }
 
+console.log(getApi())
+
 
 function createSection(main) {
   const newSection = document.createElement('section');
@@ -41,8 +43,8 @@ const fillSections = async () => {
   const { coins } = await getApi();
   console.log(coins)
   const main = document.querySelector('.main-content');
-  const keyArray = ['rank', 'symbol', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'price_usd'];
-  const titleArray = ['Rank', 'Símbolo', '1h', '24h', '7d', 'Preço(USD)']
+  const keyArray = ['rank', 'symbol', 'name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'price_usd'];
+  const titleArray = ['Rank', 'Símbolo','Nome', '1h', '24h', '7d', 'Preço(USD)']
   keyArray.forEach((key, i) => {
     createMainContent(coins, key, main, titleArray[i]);
   });
