@@ -25,15 +25,25 @@ const biggestLoserWinner = async () => {
   const winnerLi = document.getElementById('winners');
   const loserLi = document.getElementById('losers');
   
-  
   winners.forEach((coin) => {
     const li = document.createElement('li');
-    li.innerText = coin.name;
+    const img = document.createElement('img');
+    li.innerText = `(+${coin.percent_change_24h}%) ${coin.name}`;
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/${coin.nameid}.png?v=013`;
+    li.appendChild(img);
     winnerLi.appendChild(li);
-  })
+  });
 
-  console.log(winners);
-  console.log(losers);
+  losers.forEach((coin) => {
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    li.innerText = `(${coin.percent_change_24h}%) ${coin.name}`;
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/${coin.nameid}.png?v=013`;
+    li.appendChild(img);
+    loserLi.appendChild(li);
+  });
 }
 
 const getApi = async () => {
