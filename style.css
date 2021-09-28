@@ -19,7 +19,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 80px;
+  margin-bottom: 40px;
 }
 
 .nav-bar .title {
@@ -51,6 +51,60 @@ body {
 .nav-bar .nav-list li:hover {
   cursor: pointer;   
   font-size: 22px;
+}
+
+.explore-crypto {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  align-items: center;
+}
+
+.explore-crypto h2 {
+  font-size: 35px;
+}
+
+.total-mc {
+  margin-top: 10px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+  width: 650px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.white {
+  color: white;
+}
+
+#crypto-info {
+  display: flex;
+  width: 700px;
+  height: 500px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.biggest {
+  width: 300px;
+  height: 300px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 25px;
+  position: relative;
+  padding: 20px;
+  background-color: rgba(240, 240, 240, 0.3);
+  box-shadow: 3px 3px 20px rgba(0,0,0,0.7);
+  text-shadow: #000 1px 0 25px;
+  transition: transform 500ms ease;
+}
+
+.biggest:hover {
+  transform: scale(1.05);
 }
 
 .main-content {

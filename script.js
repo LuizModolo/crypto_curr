@@ -1,10 +1,29 @@
+const commaPoint = (number) => number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
+
+const globalMarketCapVolume = ({ total_mcap, total_volume, mcap_change, volume_change }) => {
+  const marketCap = document.getElementById('market-cap');
+  const volume = document.getElementById('volume');
+  marketCap.innerText = `  ${commaPoint(total_mcap)} (${mcap_change}%)`;
+  volume.innerText = `  ${commaPoint(total_volume)} (${volume_change}%)`;
+  if (mcap_change.startsWith('-')) {
+    marketCap.style.color = 'red';
+  } else {
+    marketCap.style.color = 'green';
+  }
+  if (volume_change.startsWith('-')) {
+    volume.style.color = 'red';
+  } else {
+    volume.style.color = 'green';
+  }
+}
+
 const getApi = async () => {
   const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const response2 = await fetch('https://api.coinlore.net/api/coin/markets/?id=90').then(response => response.json());
   const response3 = await fetch('https://api.coinlore.net/api/global/').then(response => response.json());
+  globalMarketCapVolume(response3[0]);
   return { coins: response, exchanges: response2, global: response3 };
 }
-
 
 function createSection(main) {
   const newSection = document.createElement('section');
@@ -25,7 +44,7 @@ function createRank(section, rank, title, nameid) {
     newSpan.style.color = 'green';
     newSpan.innerText += '%';
   } else if (title === 'Volume 24h' || title === 'Suprimento' || title === 'Market Cap') {
-    newSpan.innerText = Number(newSpan.innerText).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    newSpan.innerText = commaPoint(Number(newSpan.innerText));
   } else if (title === 'Nome') {
     const img = document.createElement('img');
     img.style.height = '10px';
@@ -48,7 +67,6 @@ function createMainContent(coins, key, main, title) {
 
 const fillSections = async () => {
   const { coins } = await getApi();
-  console.log(coins)
   const main = document.querySelector('.main-content');
   const keyArray = ['rank', 'symbol', 'name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'price_usd', 'market_cap_usd', 'volume24', 'tsupply'];
   const titleArray = ['Rank', 'Símbolo', 'Nome', '1h', '24h', '7d', 'Preço(USD)', 'Market Cap', 'Volume 24h', 'Suprimento']
