@@ -58,7 +58,7 @@ const biggestLoserWinner = async () => {
 }
 
 
-// Traz 
+// Traz informações da API de notícias em tempo real sobre o mercado de criptomoedas
 const fetchNews = () => {
   const myHeaders = new Headers();
   myHeaders.append("authorization", "c075710bb2a4746fca0e92e034127a432b454e538b43e9f8291d4cb2e8fba8c2");
@@ -69,7 +69,8 @@ const fetchNews = () => {
     headers: myHeaders,
     redirect: 'follow'
   };
-
+  
+  // Utiliza as informações trazidas da API citada acima como parâmetro para a função 'createNews'
   fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=PT", requestOptions)
     .then(response => response.json())
     .then(result => {
@@ -78,6 +79,7 @@ const fetchNews = () => {
     .catch(error => console.log('error', error));
 }
 
+// Cria 6 elementos contendo a imagem, o título e o link de redirecionamento para cada notícia trazida pela API 
 const createNews = (result) => {
   for (let i = 14; i < 20; i += 1) {
     const div = document.createElement('div');
@@ -106,6 +108,7 @@ const getApi = async () => {
   return { coins: response, exchanges: response2, global: response3 };
 }
 
+// Cria a seção principal da página onde serão disponibilizadas as informações de cada criptomoeda
 function createSection(main) {
   const newSection = document.createElement('section');
   newSection.className = 'coin-section';
@@ -113,6 +116,7 @@ function createSection(main) {
   return newSection
 }
 
+// Busca logos de cada moeda através da url especifica de cada uma e exibe ao lado para melhorar a visualização do usuário
 function createLogos(nameid, newSpan) {
   if (nameid === 'ripple') {
     const img = document.createElement('img');
