@@ -54,6 +54,39 @@ const biggestLoserWinner = async () => {
   });
 }
 
+const fetchNews = () => {
+  const myHeaders = new Headers();
+  myHeaders.append("authorization", "c075710bb2a4746fca0e92e034127a432b454e538b43e9f8291d4cb2e8fba8c2");
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=EN", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      createNews(result);
+      console.log(result);
+    })
+    .catch(error => console.log('error', error));
+}
+
+const createNews = (result) => {
+  const new1 = document.createElement('span');
+  const new2 = document.createElement('span');
+  const new3 = document.createElement('span');
+  const newsSection = document.querySelector('.news');
+  newsSection.appendChild(new1);
+  newsSection.appendChild(new2);
+  newsSection.appendChild(new3);
+  new1.innerHTML = result;
+  new2.innerHTML = 'teste';
+  new3.innerHTML = 'teste';
+}
+
 const getApi = async () => {
   const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const response2 = await fetch('https://api.coinlore.net/api/coin/markets/?id=90').then(response => response.json());
@@ -219,6 +252,7 @@ window.onload = () => {
   loadingScreen();
   fillSections();
   biggestLoserWinner();
+  fetchNews();
   setInterval(() => {
     fillSections();
   }, 60000)
