@@ -19,6 +19,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  padding: 0 80px;
 }
 
 .nav-bar .title {
@@ -28,7 +29,8 @@ body {
 
 .nav-bar img {
   width: 150px;
-  margin-left: 25px;  
+  margin-left: 25px;
+  margin-right: 150px;
 }
 
 .nav-bar .nav-list {
@@ -42,12 +44,14 @@ body {
   -webkit-text-stroke: 0.5px rgb(199, 113, 0);
 }
 
-.nav-bar .nav-list li {
+.nav-bar .nav-list a {
   font-size: 20px;
   padding: 8px;
+  text-decoration: none;
+  color: white;
 }
 
-.nav-bar .nav-list li:hover {
+.nav-bar .nav-list a:hover {
   cursor: pointer;   
   font-size: 22px;
 }
