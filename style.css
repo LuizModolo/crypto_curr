@@ -58,6 +58,7 @@ ul {
 .nav-bar .nav-list a:hover {
   cursor: pointer;   
   font-size: 22px;
+  color: rgb(199, 113, 0);
 }
 
 .explore-crypto {
