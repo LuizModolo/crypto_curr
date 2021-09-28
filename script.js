@@ -125,11 +125,45 @@ function createRank(section, rank, title, nameid) {
   section.appendChild(newSpan);
 }
 
+function fillSectionsSorted(coins) {
+  const main = document.querySelector('.main-content');
+  const keyArray = ['rank', 'symbol', 'name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'price_usd', 'market_cap_usd', 'volume24', 'tsupply'];
+  const titleArray = ['Rank', 'Símbolo', 'Nome', '1h', '24h', '7d', 'Preço(USD)', 'Market Cap', 'Volume 24h', 'Suprimento']
+  keyArray.forEach((key, i) => {
+    createMainContent(coins, key, main, titleArray[i]);
+  });
+}
+
+async function sort({ target }, key) {
+  const { coins } = await getApi();
+  if (target.classList[1] === key && (key === 'symbol' || key === 'name')) {
+    coins.data.sort();
+    console.log(coins.data);
+    document.querySelector('.main-content').innerHTML = '';
+    fillSectionsSorted(coins);
+  }
+}
+
 function createMainContent(coins, key, main, title) {
   const newSection = createSection(main);
   const titleSpan = document.createElement('span');
-  titleSpan.className = 'title-span';
+  titleSpan.className = `title-span ${key}`;
   titleSpan.innerText = title;
+  titleSpan.addEventListener('click', async ({ target }) => {
+    const { coins } = await getApi();
+    console.log(target.classList[1])
+    console.log(key)
+    if (target.classList[1] === key && (key === 'symbol' || key === 'name')) {
+      coins.data.sort((a, b) => a[key] > b[key] && 1 || -1);
+      console.log(coins.data);
+      document.querySelector('.main-content').innerHTML = '';
+      fillSectionsSorted(coins);
+    } else {
+      coins.data.sort((a, b) => b[key] - a[key]);
+      document.querySelector('.main-content').innerHTML = '';
+      fillSectionsSorted(coins);
+    }
+  });
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
     createRank(newSection, coin[key], title, coin.nameid);
@@ -169,5 +203,5 @@ window.onload = () => {
   biggestLoserWinner();
   setInterval(() => {
     fillSections();
-  }, 10000)
+  }, 60000)
 }
