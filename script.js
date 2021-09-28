@@ -17,7 +17,7 @@ const globalMarketCapVolume = ({ total_mcap, total_volume, mcap_change, volume_c
   }
 }
 
-function createLogosBigAndLose (nameid, li) {
+function createLogosBigAndLose(nameid, li) {
   if (nameid === 'axie-infinity') {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
@@ -27,7 +27,7 @@ function createLogosBigAndLose (nameid, li) {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
     img.src = `https://cryptologos.cc/logos/thumbs/${nameid}.png?v=013`;
-    li.appendChild(img); 
+    li.appendChild(img);
   }
 }
 
@@ -65,7 +65,7 @@ const fetchNews = () => {
     redirect: 'follow'
   };
 
-  fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=EN", requestOptions)
+  fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=PT", requestOptions)
     .then(response => response.json())
     .then(result => {
       createNews(result);
@@ -75,16 +75,21 @@ const fetchNews = () => {
 }
 
 const createNews = (result) => {
-  const new1 = document.createElement('span');
-  const new2 = document.createElement('span');
-  const new3 = document.createElement('span');
-  const newsSection = document.querySelector('.news');
-  newsSection.appendChild(new1);
-  newsSection.appendChild(new2);
-  newsSection.appendChild(new3);
-  new1.innerHTML = result;
-  new2.innerHTML = 'teste';
-  new3.innerHTML = 'teste';
+  for (let i = 14; i < 20; i += 1) {
+    const div = document.createElement('div');
+    const lin = document.createElement('a');
+    lin.href = result.Data[i].guid;
+    const img = document.createElement('img');
+    const p = document.createElement('p');
+    img.src = result.Data[i].imageurl;
+    p.innerText = result.Data[i].title;
+    const newsSection = document.querySelector('.news');
+    newsSection.appendChild(lin);
+    lin.appendChild(div);
+    div.appendChild(img);
+    div.appendChild(p);
+  }
+
 }
 
 const getApi = async () => {
@@ -198,10 +203,10 @@ function createMainContent(coins, key, main, title) {
         fillSectionsSorted(coins);
       } else {
         coins.data.sort((a, b) => a[key] > b[key] && 1 || -1);
-      document.querySelector('.main-content').innerHTML = '';
-      fillSectionsSorted(coins);
+        document.querySelector('.main-content').innerHTML = '';
+        fillSectionsSorted(coins);
       }
-      
+
     } else {
       if (parseFloat(target.nextElementSibling.innerText) > parseFloat(target.parentNode.lastChild.innerText)) {
         coins.data.sort((a, b) => a[key] - b[key]);
