@@ -30,6 +30,7 @@ ul {
   font-size: 60px;
   color: white;
   -webkit-text-stroke: 2px rgb(199, 113, 0); 
+  margin-bottom: 0;
 }
 
 .nav-bar img {
