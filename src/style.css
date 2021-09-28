@@ -139,6 +139,21 @@ ul {
   color: green;
 }
 
+.news {
+  display: flex; 
+  justify-content: center;
+  align-items: baseline;
+}
+
+.news a {
+  display: flex; 
+  width: 15%;
+}
+
+.news-image {
+  width: 175px;
+}
+
 .main-content {
   display: flex;
   justify-content: space-evenly;

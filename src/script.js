@@ -74,7 +74,6 @@ const fetchNews = () => {
     .then(response => response.json())
     .then(result => {
       createNews(result);
-      console.log(result);
     })
     .catch(error => console.log('error', error));
 }
@@ -85,6 +84,7 @@ const createNews = (result) => {
     const lin = document.createElement('a');
     lin.href = result.Data[i].guid;
     const img = document.createElement('img');
+    img.className = 'news-image';
     const p = document.createElement('p');
     img.src = result.Data[i].imageurl;
     p.innerText = result.Data[i].title;
