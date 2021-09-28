@@ -17,6 +17,20 @@ const globalMarketCapVolume = ({ total_mcap, total_volume, mcap_change, volume_c
   }
 }
 
+function createLogosBigAndLose (nameid, li) {
+  if (nameid === 'axie-infinity') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://monnos.com/wp-content/uploads/2021/08/axie-1.png`;
+    li.appendChild(img);
+  } else {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/${nameid}.png?v=013`;
+    li.appendChild(img); 
+  }
+}
+
 const biggestLoserWinner = async () => {
   const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const winners = response.data.sort((a, b) => a.percent_change_24h - b.percent_change_24h).reverse().splice(0, 5);
@@ -27,21 +41,15 @@ const biggestLoserWinner = async () => {
   
   winners.forEach((coin) => {
     const li = document.createElement('li');
-    const img = document.createElement('img');
     li.innerText = `(+${coin.percent_change_24h}%) ${coin.name}`;
-    img.classList.add('logo-crypto');
-    img.src = `https://cryptologos.cc/logos/thumbs/${coin.nameid}.png?v=013`;
-    li.appendChild(img);
+    createLogosBigAndLose(coin.nameid, li)
     winnerLi.appendChild(li);
   });
 
   losers.forEach((coin) => {
     const li = document.createElement('li');
-    const img = document.createElement('img');
     li.innerText = `(${coin.percent_change_24h}%) ${coin.name}`;
-    img.classList.add('logo-crypto');
-    img.src = `https://cryptologos.cc/logos/thumbs/${coin.nameid}.png?v=013`;
-    li.appendChild(img);
+    createLogosBigAndLose(coin.nameid, li)
     loserLi.appendChild(li);
   });
 }
