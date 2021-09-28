@@ -36,6 +36,7 @@ img {
   background-color: rgb(221, 221, 221);
   width: 100%;
   height: 30px;
+  margin-bottom: -10px;
 }
 
 .nav-bar .nav-list {
@@ -56,3 +57,44 @@ img {
   color: rgb(199, 113, 0);
 }
 
+.main-content {
+  display: flex;
+  justify-content: space-evenly;
+  width: 98%;
+  margin: 20px auto;
+  border: solid 2px rgb(199, 113, 0);
+  font-size: 13px;
+  color: aliceblue;
+}
+
+.coin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-span {
+  font-weight: 900;
+  color: rgb(199, 113, 0);
+}
+
+span {
+  display: flex;  
+  margin: 5px 0px;
+}
+
+.loading-container {
+  position: absolute;
+  width: 100%;
+  height: 3070px;
+  opacity: 0.9;
+}
+
+.load-image {
+  opacity: 1;
+  width: 250px;
+  position: absolute;
+  left: 500px;
+  top: 180px;
+  animation:spin 1.7s linear infinite;
+}
