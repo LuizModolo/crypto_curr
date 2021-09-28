@@ -1,4 +1,4 @@
-const commaPoint = (number) => number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
+const commaPoint = (number) => number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
 const globalMarketCapVolume = ({ total_mcap, total_volume, mcap_change, volume_change }) => {
   const marketCap = document.getElementById('market-cap');
@@ -38,7 +38,7 @@ const biggestLoserWinner = async () => {
 
   const winnerLi = document.getElementById('winners');
   const loserLi = document.getElementById('losers');
-  
+
   winners.forEach((coin) => {
     const li = document.createElement('li');
     li.innerText = `(+${coin.percent_change_24h}%) ${coin.name}`;
@@ -110,18 +110,18 @@ function createLogos(nameid, newSpan) {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
     img.src = `https://cryptologos.cc/logos/thumbs/${nameid}.png?v=013`;
-    newSpan.appendChild(img); 
+    newSpan.appendChild(img);
   }
 }
 
 function createRank(section, rank, title, nameid) {
   const newSpan = document.createElement('span');
   newSpan.innerText = rank;
-  if ( parseFloat(rank) < 0) {
+  if (parseFloat(rank) < 0) {
     newSpan.style.color = 'red';
     newSpan.style.fontWeight = '900';
     newSpan.innerText += '%';
-  } else if ((title === '1h' || title ==='24h' || title ==='7d') && parseFloat(rank) > 0){
+  } else if ((title === '1h' || title === '24h' || title === '7d') && parseFloat(rank) > 0) {
     newSpan.style.fontWeight = '900';
     newSpan.style.color = 'green';
     newSpan.innerText += '%';
@@ -159,13 +159,27 @@ function createMainContent(coins, key, main, title) {
   titleSpan.addEventListener('click', async ({ target }) => {
     const { coins } = await getApi();
     if (target.classList[1] === key && (key === 'symbol' || key === 'name')) {
-      coins.data.sort((a, b) => a[key] > b[key] && 1 || -1);
+      if (target.nextElementSibling.innerText[0].toLowerCase() === 'a') {
+        coins.data.sort((a, b) => a[key] < b[key] && 1 || -1);
+        document.querySelector('.main-content').innerHTML = '';
+        fillSectionsSorted(coins);
+      } else {
+        coins.data.sort((a, b) => a[key] > b[key] && 1 || -1);
       document.querySelector('.main-content').innerHTML = '';
       fillSectionsSorted(coins);
+      }
+      
     } else {
-      coins.data.sort((a, b) => b[key] - a[key]);
-      document.querySelector('.main-content').innerHTML = '';
-      fillSectionsSorted(coins);
+      if (parseFloat(target.nextElementSibling.innerText) > parseFloat(target.parentNode.lastChild.innerText)) {
+        coins.data.sort((a, b) => parseInt(a[key]) - parseInt(b[key]));
+        document.querySelector('.main-content').innerHTML = '';
+        fillSectionsSorted(coins);
+      } else {
+        coins.data.sort((a, b) => parseInt(b[key]) - parseInt(a[key]));
+        document.querySelector('.main-content').innerHTML = '';
+        fillSectionsSorted(coins);
+      }
+
     }
   });
   newSection.appendChild(titleSpan);
@@ -186,11 +200,11 @@ const fillSections = async () => {
 }
 
 function loadingScreen() {
-  const newSection = document.createElement('section');  
+  const newSection = document.createElement('section');
   const nav = document.querySelector('.nav-bar');
   newSection.className = 'loading-container';
   document.querySelector('body').insertBefore(newSection, nav);
-  const loadImage = document.createElement('img'); 
+  const loadImage = document.createElement('img');
   loadImage.className = 'load-image';
   loadImage.src = './imgs/cc_logo_transp.png';
   newSection.appendChild(loadImage);
