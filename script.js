@@ -270,6 +270,7 @@ async function sort({ target }, key) {
 }
 
 function createMainContent(coins, key, main, title) {
+  const criptoButton = document.querySelector('#cripto-button');
   const newSection = createSection(main);
   const titleSpan = document.createElement('span');
   titleSpan.className = `title-span ${key}`;
@@ -298,6 +299,7 @@ function createMainContent(coins, key, main, title) {
       }
     }
   });
+  criptoButton.href = '#criptos';
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
     createTable(newSection, coin[key], title, coin.nameid);
