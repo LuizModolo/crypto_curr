@@ -177,7 +177,7 @@ function createLogos(nameid, newSpan) {
   }
 }
 
-function createRank(section, rank, title, nameid) {
+function createTable(section, rank, title, nameid) {
   const newSpan = document.createElement('span');
   newSpan.innerText = rank;
   if (parseFloat(rank) < 0) {
@@ -231,7 +231,6 @@ function createMainContent(coins, key, main, title) {
         document.querySelector('.main-content').innerHTML = '';
         fillSectionsSorted(coins);
       }
-
     } else {
       if (parseFloat(target.nextElementSibling.innerText) > parseFloat(target.parentNode.lastChild.innerText)) {
         coins.data.sort((a, b) => a[key] - b[key]);
@@ -242,12 +241,11 @@ function createMainContent(coins, key, main, title) {
         document.querySelector('.main-content').innerHTML = '';
         fillSectionsSorted(coins);
       }
-
     }
   });
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
-    createRank(newSection, coin[key], title, coin.nameid);
+    createTable(newSection, coin[key], title, coin.nameid);
   });
 }
 
@@ -278,25 +276,30 @@ function loadingRemove() {
   section.remove();
 }
 
-const submitButton = document.querySelector('.button');
-submitButton.addEventListener('click', () => {
-  const emailInput = document.querySelector('.input');
-  const re = /\S+@\S+\.\S+/;
-  if (re.test(emailInput.value)) {
-    emailInput.value = '';
-    alert('E-mail cadastrado com sucesso!')
-  } else {
-    emailInput.value = '';
-    alert('E-mail inválido!')
-  }
-})
+function buttonEvent() {
+  const submitButton = document.querySelector('.button');
+  submitButton.addEventListener('click', () => {
+    const emailInput = document.querySelector('.input');
+    const re = /\S+@\S+\.\S+/;
+    if (re.test(emailInput.value)) {
+      emailInput.value = '';
+      alert('E-mail cadastrado com sucesso!')
+    } else {
+      emailInput.value = '';
+      alert('E-mail inválido!')
+    }
+  });
+}
 
 window.onload = () => {
   loadingScreen();
   fillSections();
   biggestLoserWinner();
   fetchNews();
+  buttonEvent();
   setInterval(() => {
     fillSections();
   }, 60000)
 }
+
+module.exports = { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, createLogosBigAndLose, globalMarketCapVolume, commaPoint, createNews, createMainContent, createSection, buttonEvent };
