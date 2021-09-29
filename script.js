@@ -361,7 +361,6 @@ const fillSections2 = async () => {
   keyArray.forEach((key, i) => {
     createMainContent2(coins, key, main, titleArray[i]);
   });
-  loadingRemove();
 }
 
 function loadingScreen() {
@@ -400,8 +399,8 @@ function buttonEvent() {
 }
 
 window.onload = async () => {
-  fillSections2();
   loadingScreen();
+  fillSections2();
   fetchNews();
   biggestLoserWinner();
   await fillSections();
