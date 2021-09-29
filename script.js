@@ -71,7 +71,7 @@ const biggestLoserWinner = async () => {
     div.style.display = 'flex';
     const span1 = document.createElement('span');
     const span2 = document.createElement('span');
-    span1.innerText = `(-${coin.percent_change_24h}%)`
+    span1.innerText = `(${coin.percent_change_24h}%)`
     span2.innerText = `${coin.name}`;
     span1.style.color = 'red'
     createLogosBigAndLose(coin.nameid, span1)
