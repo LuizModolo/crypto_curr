@@ -127,7 +127,7 @@ const createNews = (result) => {
 // Cria 3 elementos contendo a imagem, o título e o link de redirecionamento para cada notícia trazida pela API
 const createNews2 = (result) => {
   const randomNum = Math.floor(Math.random() * 44);
-  for (let i = randomNum; i < (randomNum + 3); i += 1) {
+  for (let i = 2; i < 50; i += 1) {
     const div = document.createElement('div');
     div.className = 'news2-div'
     const lin = document.createElement('a');
@@ -144,6 +144,14 @@ const createNews2 = (result) => {
     div.appendChild(img);
     div.appendChild(p);
   }
+  $('.news2').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    prevArrow: '<div style="font-size:50px; margin-right:25px; cursor:pointer;" class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+    nextArrow: '<div style="font-size:50px; margin-left:25px; cursor:pointer;" class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>'
+  });
 }
 
 const getApi = async () => {
@@ -338,8 +346,8 @@ function createMainContent2(coins, key, main, title) {
 const fillSections2 = async () => {
   const { coins } = await getApi();
   const main = document.querySelector('.main-content2');
-  const keyArray = ['rank', 'symbol', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'price_usd'];
-  const titleArray = ['Rank', 'Símbolo', '1h', '24h', '7d', 'Preço(USD)']
+  const keyArray = ['rank', 'symbol', 'percent_change_24h', 'percent_change_7d', 'price_usd'];
+  const titleArray = ['Rank', 'Símbolo', '24h', '7d', 'Preço(USD)']
   keyArray.forEach((key, i) => {
     createMainContent2(coins, key, main, titleArray[i]);
   });
