@@ -412,7 +412,7 @@ const criptoHref = () => {
 window.onload = async () => {
   criptoHref();
   loadingScreen();
-  fillSections2();
+  await fillSections2();
   fetchNews();
   biggestLoserWinner();
   await fillSections();
