@@ -128,7 +128,9 @@ describe('Testando a construção dinâmica da tabela página com base na API', 
 });
 
 describe('Testando a funcionalidade do botão de submit', () => {
-  const success = 'E-mail cadastrado com sucesso!'
+  
+  const success = 'E-mail cadastrado com sucesso!';
+  
   test('se o botão envia alert de sucesso', () => {
     buttonEvent = jest.fn().mockReturnValue(success);
 
@@ -137,7 +139,7 @@ describe('Testando a funcionalidade do botão de submit', () => {
     expect(buttonEvent(success)).toEqual('E-mail cadastrado com sucesso!');
   });  
   
-  const error = 'E-mail inválido!'
+  const error = 'E-mail inválido!';
 
   test('se o botão envia alert de erro', () => {
     buttonEvent = jest.fn().mockReturnValue(error);
