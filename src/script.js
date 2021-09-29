@@ -95,22 +95,24 @@ const fetchNews = () => {
 
 // Cria 6 elementos contendo a imagem, o título e o link de redirecionamento para cada notícia trazida pela API 
 const createNews = (result) => {
-  for (let i = 14; i < 20; i += 1) {
+  const randomNum = Math.floor(Math.random() * 44);
+  for (let i = randomNum; i < (randomNum + 6); i += 1) {
     const div = document.createElement('div');
+    div.className = 'news-div'
     const lin = document.createElement('a');
     lin.href = result.Data[i].guid;
+    lin.target = '_blank';
     const img = document.createElement('img');
     img.className = 'news-image';
     const p = document.createElement('p');
     img.src = result.Data[i].imageurl;
-    p.innerText = result.Data[i].title;
+    p.innerText = `${result.Data[i].title.slice(0, 50)}...`;
     const newsSection = document.querySelector('.news');
     newsSection.appendChild(lin);
     lin.appendChild(div);
     div.appendChild(img);
     div.appendChild(p);
   }
-
 }
 
 const getApi = async () => {
