@@ -225,6 +225,7 @@ span {
   height: 100%;
   background-color: rgb(49, 28, 1);
   opacity: 0.9;
+  z-index: 1;
 }
 
 .load-image {
@@ -304,4 +305,4 @@ span {
   .news-image {
     width: 275px;
   }
-}
+}   
