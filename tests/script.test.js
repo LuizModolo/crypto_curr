@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, commaPoint, createNews, createMainContent, createSection, buttonEvent } = require('../script.js');
+let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, commaPoint, createNews, createNews2, createMainContent, createSection, buttonEvent } = require('../script.js');
 
 describe('Testando o loading da página', () => {
   test('se a função de loadingScreen está funcionando corretamente', () => {
