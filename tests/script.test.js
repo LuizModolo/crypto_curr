@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, commaPoint, createNews, createNews2, createMainContent, createSection, buttonEvent } = require('../script.js');
+let { loadingScreen, fillSectionsSorted, fillSections, fillSections2, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, commaPoint, createNews, createNews2, createMainContent, createMainContent2, createSection, createSection2, buttonEvent } = require('../script.js');
 
 describe('Testando o loading da página', () => {
   test('se a função de loadingScreen está funcionando corretamente', () => {
@@ -40,6 +40,13 @@ describe('Testando retorno do fetch da API de notícias e sua construção para 
 
     createNews();
     expect(createNews).toHaveBeenCalled();
+  });
+
+  test('se createNews2 é executada', () => {
+    createNews2 = jest.fn()
+
+    createNews2();
+    expect(createNews2).toHaveBeenCalled();
   });
 });
 
@@ -87,6 +94,13 @@ describe('Testando a construção dinâmica da tabela página com base na API', 
     expect(fillSections).toHaveBeenCalledTimes(1);
   });
 
+  test('se a função fillSections2 está funcionando corretamente', () => {
+    fillSections2 = jest.fn();
+    fillSections2();
+    expect(fillSections2).toHaveBeenCalled();
+    expect(fillSections2).toHaveBeenCalledTimes(1);
+  });
+
   test('se a função createMainContent está funcionando corretamente', () => {
     createMainContent = jest.fn();
     createMainContent();
@@ -94,11 +108,25 @@ describe('Testando a construção dinâmica da tabela página com base na API', 
     expect(createMainContent).toHaveBeenCalledTimes(1);
   });
 
+  test('se a função createMainContent2 está funcionando corretamente', () => {
+    createMainContent2 = jest.fn();
+    createMainContent2();
+    expect(createMainContent2).toHaveBeenCalled();
+    expect(createMainContent2).toHaveBeenCalledTimes(1);
+  });
+
   test('se a função createSection está funcionando corretamente', () => {
     createSection = jest.fn().mockReturnValue('HTML Element');
     expect(createSection()).toBe('HTML Element');
     expect(createSection).toHaveBeenCalled();
     expect(createSection).toHaveBeenCalledTimes(1);
+  });
+
+  test('se a função createSection está funcionando corretamente', () => {
+    createSection2 = jest.fn().mockReturnValue('HTML Element');
+    expect(createSection2()).toBe('HTML Element');
+    expect(createSection2).toHaveBeenCalled();
+    expect(createSection2).toHaveBeenCalledTimes(1);
   });
 
   test('se a função fillSectionsSorted está funcionando corretamente', () => {
