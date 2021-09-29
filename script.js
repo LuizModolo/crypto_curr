@@ -158,8 +158,8 @@ const createNews2 = (result) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    prevArrow: '<div style="font-size:50px; margin-right:25px; cursor:pointer;" class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
-    nextArrow: '<div style="font-size:50px; margin-left:25px; cursor:pointer;" class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>'
+    prevArrow: '<div style="font-size:50px; margin-right:25px; cursor:pointer;" class="slick-prev arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+    nextArrow: '<div style="font-size:50px; margin-left:25px; cursor:pointer;" class="slick-next"><i class="fa fa-angle-right arrow" aria-hidden="true"></i></div>'
   });
 }
 
@@ -361,7 +361,6 @@ const fillSections2 = async () => {
   keyArray.forEach((key, i) => {
     createMainContent2(coins, key, main, titleArray[i]);
   });
-  loadingRemove();
 }
 
 function loadingScreen() {
@@ -400,8 +399,8 @@ function buttonEvent() {
 }
 
 window.onload = async () => {
-  fillSections2();
   loadingScreen();
+  fillSections2();
   fetchNews();
   biggestLoserWinner();
   await fillSections();
