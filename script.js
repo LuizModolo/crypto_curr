@@ -270,7 +270,7 @@ async function sort({ target }, key) {
 }
 
 function createMainContent(coins, key, main, title) {
-  const criptoButton = document.querySelector('#cripto-button');
+  // const criptoButton = document.querySelector('#cripto-button');
   const newSection = createSection(main);
   const titleSpan = document.createElement('span');
   titleSpan.className = `title-span ${key}`;
@@ -299,7 +299,7 @@ function createMainContent(coins, key, main, title) {
       }
     }
   });
-  criptoButton.href = '#criptos';
+  // criptoButton.href = '#criptos';
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
     createTable(newSection, coin[key], title, coin.nameid);
@@ -320,7 +320,7 @@ const fillSections = async () => {
 function createMainContent2(coins, key, main, title) {
   const newSection = createSection2(main);
   const titleSpan = document.createElement('span');
-  const criptoButton = document.querySelector('#cripto-button');
+  // const criptoButton = document.querySelector('#cripto-button');
   titleSpan.className = `title-span2 ${key}`;
   titleSpan.innerText = title;
   titleSpan.addEventListener('click', async ({ target }) => {
@@ -347,7 +347,7 @@ function createMainContent2(coins, key, main, title) {
       }
     }
   });
-  criptoButton.href = '#criptos2';
+  // criptoButton.href = '#criptos2';
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
     createTable(newSection, coin[key], title, coin.nameid);
@@ -400,7 +400,17 @@ function buttonEvent() {
   });
 }
 
+const criptoHref = () => {
+  const criptoButton = document.querySelector('#cripto-button');
+  if (window.screen.width <= 420) {
+    criptoButton.href = '#criptos2'
+  } else {
+    criptoButton.href = '#criptos'
+  }
+}
+
 window.onload = async () => {
+  criptoHref();
   loadingScreen();
   fillSections2();
   fetchNews();
