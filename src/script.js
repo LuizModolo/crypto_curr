@@ -310,6 +310,7 @@ const fillSections = async () => {
 function createMainContent2(coins, key, main, title) {
   const newSection = createSection2(main);
   const titleSpan = document.createElement('span');
+  const criptoButton = document.querySelector('#cripto-button');
   titleSpan.className = `title-span2 ${key}`;
   titleSpan.innerText = title;
   titleSpan.addEventListener('click', async ({ target }) => {
@@ -336,6 +337,7 @@ function createMainContent2(coins, key, main, title) {
       }
     }
   });
+  criptoButton.href = '#criptos2';
   newSection.appendChild(titleSpan);
   coins.data.forEach(coin => {
     createTable(newSection, coin[key], title, coin.nameid);
