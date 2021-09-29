@@ -96,7 +96,7 @@ const fetchNews = () => {
 // Cria 6 elementos contendo a imagem, o título e o link de redirecionamento para cada notícia trazida pela API 
 const createNews = (result) => {
   const randomNum = Math.floor(Math.random() * 44);
-  for (let i = randomNum; i < (randomNum + 6); i += 1) {
+  for (let i = 2; i < 50; i += 1) {
     const div = document.createElement('div');
     div.className = 'news-div'
     const lin = document.createElement('a');
@@ -113,6 +113,14 @@ const createNews = (result) => {
     div.appendChild(img);
     div.appendChild(p);
   }
+  $('.news').slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    prevArrow: '<div style="font-size:50px; margin-right:25px; cursor:pointer;" class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+    nextArrow: '<div style="font-size:50px; margin-left:25px; cursor:pointer;" class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>'
+  });
 }
 
 const getApi = async () => {
