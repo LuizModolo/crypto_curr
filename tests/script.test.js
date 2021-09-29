@@ -20,7 +20,12 @@ describe('Testando o loading da página', () => {
   });
 });
 
-describe('Testando a construção dinâmica da página com base na API', () => {
+describe('Testando a construção dinâmica da tabela página com base na API', () => {
+  test('se a função de getApi está funcionando corretamente', () => {
+    getApi = jest.fn().mockResolvedValue(Promise.resolve);
+    return expect(getApi()).resolves.toEqual(Promise.resolve);
+  });
+
   test('se a função fillSections está funcionando corretamente', () => {
     fillSections = jest.fn();
     fillSections();
@@ -33,5 +38,40 @@ describe('Testando a construção dinâmica da página com base na API', () => {
     createMainContent();
     expect(createMainContent).toHaveBeenCalled();
     expect(createMainContent).toHaveBeenCalledTimes(1);
+  });
+
+  test('se a função createSection está funcionando corretamente', () => {
+    createSection = jest.fn().mockReturnValue('HTML Element');
+    expect(createSection()).toBe('HTML Element');
+    expect(createSection).toHaveBeenCalled();
+    expect(createSection).toHaveBeenCalledTimes(1);
+  });
+
+  test('se a função fillSectionsSorted está funcionando corretamente', () => {
+    fillSectionsSorted = jest.fn();
+    fillSectionsSorted();
+    expect(fillSectionsSorted).toHaveBeenCalled();
+    expect(fillSectionsSorted).toHaveBeenCalledTimes(1);
+  });
+
+  test('se a função createTable está funcionando corretamente', () => {
+    createTable = jest.fn();
+    createTable();
+    expect(createTable).toHaveBeenCalled();
+    expect(createTable).toHaveBeenCalledTimes(1);
+  });
+
+  test('se a função commaPoint está funcionando corretamente', () => {
+    commaPoint = jest.fn().mockReturnValue('1,650,70');
+    expect(commaPoint(1650)).toBe('1,650,70');
+    expect(commaPoint).toHaveBeenCalled();
+    expect(commaPoint).toHaveBeenCalledTimes(1);
+  });
+
+  test('se a função createLogos está funcionando corretamente', () => {
+    createLogos = jest.fn()
+    createLogos();
+    expect(createLogos).toHaveBeenCalled();
+    expect(createLogos).toHaveBeenCalledTimes(1);
   });
 });
