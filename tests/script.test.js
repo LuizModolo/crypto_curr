@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, createLogosBigAndLose, globalMarketCapVolume, commaPoint, createNews, createMainContent, createSection, buttonEvent } = require('../src/script.js');
+let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, commaPoint, createNews, createMainContent, createSection, buttonEvent } = require('../src/script.js');
 
 describe('Testando o loading da página', () => {
   test('se a função de loadingScreen está funcionando corretamente', () => {
@@ -20,10 +20,64 @@ describe('Testando o loading da página', () => {
   });
 });
 
+describe('Testando retorno do fetch da API de notícias e sua construção para exibir na tela', () => {
+  fetchNews = jest.fn().mockResolvedValue({
+    title: 'Título da notícia',
+    imageurl: 'Endereço da imagem',
+    guid: 'Endereço da notícia',
+  });
+
+  test('se o retorno é o esperado', () => {
+    fetchNews().then((data) => {
+      expect(data.title).toEqual('Título da notícia');
+      expect(data.imageurl).toEqual('Endereço da imagem');
+      expect(data.guid).toEqual('Endereço da notícia');
+    });
+  });
+
+  test('se createNews é executada', () => {
+    createNews = jest.fn()
+
+    createNews();
+    expect(createNews).toHaveBeenCalled();
+  });
+});
+
+describe('Testando a ordenação dos mais valorizados e dos menos valorizados', () => {
+  const winners = ['10.39, 6.08, 3.66, 2.65, 1.92'];
+
+  test('se os valores retornados correspondem aos esperados', () => {
+    biggestLoserWinner = jest.fn().mockReturnValue(winners);
+
+    biggestLoserWinner();
+    expect(biggestLoserWinner).toHaveBeenCalled();
+    expect(biggestLoserWinner(winners)).toEqual(['10.39, 6.08, 3.66, 2.65, 1.92']);
+  });
+
+  const losers = ['-6.46, -5.42, -5.13, -5.10, -5.03'];
+
+  test('se os valores retornados correspondem aos esperados', () => {
+    biggestLoserWinner = jest.fn().mockReturnValue(losers);
+
+    biggestLoserWinner();
+    expect(biggestLoserWinner).toHaveBeenCalled();
+    expect(biggestLoserWinner(losers)).toEqual(['-6.46, -5.42, -5.13, -5.10, -5.03']);
+  });
+});
+
 describe('Testando a construção dinâmica da tabela página com base na API', () => {
+  getApi = jest.fn().mockResolvedValue({
+    coins: 'response',
+    exchanges: 'response2',
+    global: 'response3',
+  });
+
   test('se a função de getApi está funcionando corretamente', () => {
-    getApi = jest.fn().mockResolvedValue(Promise.resolve);
-    return expect(getApi()).resolves.toEqual(Promise.resolve);
+    getApi().then((data) => {
+      expect(data.coins).toEqual('response');
+      expect(data.exchanges).toEqual('response2');
+      expect(data.global).toEqual('response3');
+    });
   });
 
   test('se a função fillSections está funcionando corretamente', () => {
@@ -72,3 +126,25 @@ describe('Testando a construção dinâmica da tabela página com base na API', 
     expect(createLogos).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('Testando a funcionalidade do botão de submit', () => {
+  const success = 'E-mail cadastrado com sucesso!'
+  test('se o botão envia alert de sucesso', () => {
+    buttonEvent = jest.fn().mockReturnValue(success);
+
+    buttonEvent();
+    expect(buttonEvent).toHaveBeenCalled();
+    expect(buttonEvent(success)).toEqual('E-mail cadastrado com sucesso!');
+  });  
+  
+  const error = 'E-mail inválido!'
+
+  test('se o botão envia alert de erro', () => {
+    buttonEvent = jest.fn().mockReturnValue(error);
+
+    buttonEvent();
+    expect(buttonEvent).toHaveBeenCalled();
+    expect(buttonEvent(error)).toEqual('E-mail inválido!');
+  });
+});
+
