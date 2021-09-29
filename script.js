@@ -423,4 +423,4 @@ window.onload = async () => {
   }, 60000)
 }
 
-module.exports = { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, createLogosBigAndLose, globalMarketCapVolume, commaPoint, createNews, createMainContent, createSection, buttonEvent };
+module.exports = { loadingScreen, fillSectionsSorted, fillSections, fillSections2, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, createLogosBigAndLose, globalMarketCapVolume, commaPoint, createNews, createNews2, createMainContent, createMainContent2, createSection, createSection2, buttonEvent };
