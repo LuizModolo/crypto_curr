@@ -20,10 +20,41 @@ describe('Testando o loading da página', () => {
   });
 });
 
+describe('Testando a ordenação dos mais valorizados e dos menos valorizados', () => {
+  const winners = ['10.39, 6.08, 3.66, 2.65, 1.92'];
+
+  test('se os valores retornados correspondem aos esperados', () => {
+    biggestLoserWinner = jest.fn().mockReturnValue(winners);
+
+    biggestLoserWinner();
+    expect(biggestLoserWinner).toHaveBeenCalled();
+    expect(biggestLoserWinner(winners)).toEqual(['10.39, 6.08, 3.66, 2.65, 1.92']);
+  });
+
+  const losers = ['-6.46, -5.42, -5.13, -5.10, -5.03'];
+
+  test('se os valores retornados correspondem aos esperados', () => {
+    biggestLoserWinner = jest.fn().mockReturnValue(losers);
+
+    biggestLoserWinner();
+    expect(biggestLoserWinner).toHaveBeenCalled();
+    expect(biggestLoserWinner(losers)).toEqual(['-6.46, -5.42, -5.13, -5.10, -5.03']);
+  });
+});
+
 describe('Testando a construção dinâmica da tabela página com base na API', () => {
+  getApi = jest.fn().mockResolvedValue({
+    coins: 'response',
+    exchanges: 'response2',
+    global: 'response3',
+  });
+
   test('se a função de getApi está funcionando corretamente', () => {
-    getApi = jest.fn().mockResolvedValue(Promise.resolve);
-    return expect(getApi()).resolves.toEqual(Promise.resolve);
+    getApi().then((data) => {
+      expect(data.coins).toEqual('response');
+      expect(data.exchanges).toEqual('response2');
+      expect(data.global).toEqual('response3');
+    });
   });
 
   test('se a função fillSections está funcionando corretamente', () => {
