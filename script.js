@@ -33,6 +33,26 @@ function createLogosBigAndLose(nameid, span1) {
     img.classList.add('logo-crypto');
     img.src = `https://cryptologos.cc/logos/thumbs/elrond-egld.png?v=013`;
     span1.appendChild(img);
+  } else if (nameid === 'polkadot') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/polkadot-new.png?v=013`;
+    span1.appendChild(img);
+  } else if (nameid === 'theta-token') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/theta.png?v=013`;
+    span1.appendChild(img);
+  } else if (nameid === 'terrausd') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://s3-us-west-1.amazonaws.com/compliance-ico-af-us-west-1/production/token_profiles/logos/original/49e/d76/27-/49ed7627-3930-497b-a45f-7304ea9f7d83-1614303905-4ad23deebf089f767bfb868a69f674316a0fdc3c.png`;
+    span1.appendChild(img);
+  } else if (nameid === 'bitcoin-cash-sv') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/bitcoin-cash.png?v=013`;
+    span1.appendChild(img);
   } else {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
