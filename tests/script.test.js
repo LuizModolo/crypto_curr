@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, createLogosBigAndLose, globalMarketCapVolume, commaPoint, createNews, createMainContent, createSection, buttonEvent } = require('../src/script.js');
+let { loadingScreen, fillSectionsSorted, fillSections, biggestLoserWinner, fetchNews, getApi, loadingRemove, createTable, createLogos, commaPoint, createNews, createMainContent, createSection, buttonEvent } = require('../src/script.js');
 
 describe('Testando o loading da página', () => {
   test('se a função de loadingScreen está funcionando corretamente', () => {
@@ -17,6 +17,29 @@ describe('Testando o loading da página', () => {
     loadingRemove();
     expect(loadingRemove).toHaveBeenCalled();
     expect(loadingRemove).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Testando retorno do fetch da API de notícias e sua construção para exibir na tela', () => {
+  fetchNews = jest.fn().mockResolvedValue({
+    title: 'Título da notícia',
+    imageurl: 'Endereço da imagem',
+    guid: 'Endereço da notícia',
+  });
+
+  test('se o retorno é o esperado', () => {
+    fetchNews().then((data) => {
+      expect(data.title).toEqual('Título da notícia');
+      expect(data.imageurl).toEqual('Endereço da imagem');
+      expect(data.guid).toEqual('Endereço da notícia');
+    });
+  });
+
+  test('se createNews é executada', () => {
+    createNews = jest.fn()
+
+    createNews();
+    expect(createNews).toHaveBeenCalled();
   });
 });
 
@@ -103,3 +126,25 @@ describe('Testando a construção dinâmica da tabela página com base na API', 
     expect(createLogos).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('Testando a funcionalidade do botão de submit', () => {
+  const success = 'E-mail cadastrado com sucesso!'
+  test('se o botão envia alert de sucesso', () => {
+    buttonEvent = jest.fn().mockReturnValue(success);
+
+    buttonEvent();
+    expect(buttonEvent).toHaveBeenCalled();
+    expect(buttonEvent(success)).toEqual('E-mail cadastrado com sucesso!');
+  });  
+  
+  const error = 'E-mail inválido!'
+
+  test('se o botão envia alert de erro', () => {
+    buttonEvent = jest.fn().mockReturnValue(error);
+
+    buttonEvent();
+    expect(buttonEvent).toHaveBeenCalled();
+    expect(buttonEvent(error)).toEqual('E-mail inválido!');
+  });
+});
+
