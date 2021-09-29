@@ -98,7 +98,8 @@ const fetchNews = () => {
   fetch("https://min-api.cryptocompare.com/data/v2/news/?lang=PT", requestOptions)
     .then(response => response.json())
     .then(result => {
-      createNews(result);
+      createNews(result)
+      createNews2(result);
     })
     .catch(error => console.log('error', error));
 }
@@ -132,6 +133,36 @@ const createNews = (result) => {
   });
 }
 
+// Cria 3 elementos contendo a imagem, o título e o link de redirecionamento para cada notícia trazida pela API
+const createNews2 = (result) => {
+  const randomNum = Math.floor(Math.random() * 44);
+  for (let i = 2; i < 50; i += 1) {
+    const div = document.createElement('div');
+    div.className = 'news2-div'
+    const lin = document.createElement('a');
+    lin.href = result.Data[i].guid;
+    lin.target = '_blank';
+    const img = document.createElement('img');
+    img.className = 'news2-image';
+    const p = document.createElement('p');
+    img.src = result.Data[i].imageurl;
+    p.innerText = `${result.Data[i].title.slice(0, 50)}...`;
+    const newsSection = document.querySelector('.news2');
+    newsSection.appendChild(lin);
+    lin.appendChild(div);
+    div.appendChild(img);
+    div.appendChild(p);
+  }
+  $('.news2').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    prevArrow: '<div style="font-size:50px; margin-right:25px; cursor:pointer;" class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
+    nextArrow: '<div style="font-size:50px; margin-left:25px; cursor:pointer;" class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>'
+  });
+}
+
 const getApi = async () => {
   const response = await fetch(' https://api.coinlore.net/api/tickers/?start=0&limit=50').then(response => response.json());
   const response2 = await fetch('https://api.coinlore.net/api/coin/markets/?id=90').then(response => response.json());
@@ -145,6 +176,13 @@ const getApi = async () => {
 function createSection(main) {
   const newSection = document.createElement('section');
   newSection.className = 'coin-section';
+  main.appendChild(newSection);
+  return newSection
+}
+
+function createSection2(main) {
+  const newSection = document.createElement('section');
+  newSection.className = 'coin-section2';
   main.appendChild(newSection);
   return newSection
 }
@@ -266,6 +304,7 @@ function createMainContent(coins, key, main, title) {
   });
 }
 
+// Preenche o conteúdo da tabela principal
 const fillSections = async () => {
   const { coins } = await getApi();
   const main = document.querySelector('.main-content');
@@ -274,6 +313,55 @@ const fillSections = async () => {
   keyArray.forEach((key, i) => {
     createMainContent(coins, key, main, titleArray[i]);
   });
+}
+
+function createMainContent2(coins, key, main, title) {
+  const newSection = createSection2(main);
+  const titleSpan = document.createElement('span');
+  const criptoButton = document.querySelector('#cripto-button');
+  titleSpan.className = `title-span2 ${key}`;
+  titleSpan.innerText = title;
+  titleSpan.addEventListener('click', async ({ target }) => {
+    const { coins } = await getApi();
+    if (target.classList[1] === key && (key === 'symbol' || key === 'name')) {
+      if (target.nextElementSibling.innerText[0].toLowerCase() === 'a') {
+        coins.data.sort((a, b) => a[key] < b[key] && 1 || -1);
+        document.querySelector('.main-content2').innerHTML = '';
+        fillSectionsSorted(coins);
+      } else {
+        coins.data.sort((a, b) => a[key] > b[key] && 1 || -1);
+        document.querySelector('.main-content2').innerHTML = '';
+        fillSectionsSorted(coins);
+      }
+    } else {
+      if (parseFloat(target.nextElementSibling.innerText) > parseFloat(target.parentNode.lastChild.innerText)) {
+        coins.data.sort((a, b) => a[key] - b[key]);
+        document.querySelector('.main-content2').innerHTML = '';
+        fillSectionsSorted(coins);
+      } else {
+        coins.data.sort((a, b) => b[key] - a[key]);
+        document.querySelector('.main-content2').innerHTML = '';
+        fillSectionsSorted(coins);
+      }
+    }
+  });
+  criptoButton.href = '#criptos2';
+  newSection.appendChild(titleSpan);
+  coins.data.forEach(coin => {
+    createTable(newSection, coin[key], title, coin.nameid);
+  });
+}
+
+// Preenche o conteúdo da tabela principal quando a tela for menor que 600px (controle via css);
+const fillSections2 = async () => {
+  const { coins } = await getApi();
+  const main = document.querySelector('.main-content2');
+  const keyArray = ['rank', 'symbol', 'percent_change_24h', 'percent_change_7d', 'price_usd'];
+  const titleArray = ['Rank', 'Símbolo', '24h', '7d', 'Preço(USD)']
+  keyArray.forEach((key, i) => {
+    createMainContent2(coins, key, main, titleArray[i]);
+  });
+  loadingRemove();
 }
 
 function loadingScreen() {
@@ -312,6 +400,7 @@ function buttonEvent() {
 }
 
 window.onload = async () => {
+  fillSections2();
   loadingScreen();
   fetchNews();
   biggestLoserWinner();
