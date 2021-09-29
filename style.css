@@ -379,24 +379,29 @@ span {
   
   .news2 {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
     margin-bottom: 60px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
   }
   
   .news2-image {
     height: 150px;
-    width: 175px;
+    width: 280px;
     border-radius: 20px;
   }
 
   .news2-div {
-    width: 175px;
+    width: 280px;
     padding: 10px;
     color: white;
     text-decoration: none;
-    margin-left: 50px;
+    margin-left: 10px;
+  }
+
+  .arrow {
+    margin: 10px;
   }
 
   .total-mc {
