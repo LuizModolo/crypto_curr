@@ -318,6 +318,12 @@ span {
   font-weight: 700;
 }
 
+@media screen and (min-width: 1400px) {
+  .news-image {
+    width: 270px;
+  }
+}
+
 @media screen and (max-width: 600px) {
 
   .nav-bar {
