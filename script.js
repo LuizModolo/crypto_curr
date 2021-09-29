@@ -287,6 +287,10 @@ function loadingScreen() {
   loadImage.className = 'load-image';
   loadImage.src = './imgs/cc_logo_transp.png';
   newSection.appendChild(loadImage);
+  const loadImage2 = document.createElement('img');
+  loadImage2.className = 'load-image';
+  loadImage2.src = './imgs/cc_logo_transp.png';
+  newSection.appendChild(loadImage2);
 }
 
 function loadingRemove() {

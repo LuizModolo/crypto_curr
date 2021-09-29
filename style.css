@@ -219,10 +219,11 @@ span {
 .loading-container {
   position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 1582px;
   background-color: rgb(49, 28, 1);
   opacity: 0.9;
   z-index: 1;
