@@ -234,18 +234,7 @@ span {
   animation:spin 1.7s linear infinite;
 }
 
-
 @keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
-
-@media screen and (max-width: 600px) {
-  .test {
-    display: none;
-  }
-
-  .nav-bar .nav-list {
-    display: none;
-  }
-}
 
 .email-reg {
   text-align: center;

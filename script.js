@@ -23,6 +23,16 @@ function createLogosBigAndLose(nameid, span1) {
     img.classList.add('logo-crypto');
     img.src = `https://monnos.com/wp-content/uploads/2021/08/axie-1.png`;
     span1.appendChild(img);
+  } else if (nameid === 'ripple') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/xrp.png?v=013`;
+    span1.appendChild(img);
+  } else if (nameid === 'elrond-egold') {
+    const img = document.createElement('img');
+    img.classList.add('logo-crypto');
+    img.src = `https://cryptologos.cc/logos/thumbs/elrond-egld.png?v=013`;
+    span1.appendChild(img);
   } else {
     const img = document.createElement('img');
     img.classList.add('logo-crypto');
@@ -115,9 +125,9 @@ const createNews = (result) => {
   }
   $('.news').slick({
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 5,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 7000,
     prevArrow: '<div style="font-size:50px; margin-right:25px; cursor:pointer;" class="slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>',
     nextArrow: '<div style="font-size:50px; margin-left:25px; cursor:pointer;" class="slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>'
   });
