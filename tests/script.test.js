@@ -93,10 +93,7 @@ describe('Testando a construção dinâmica da tabela página com base na API', 
   });
 
   test('se a função commaPoint está funcionando corretamente', () => {
-    commaPoint = jest.fn().mockReturnValue('1,650,70');
-    expect(commaPoint(1650)).toBe('1,650,70');
-    expect(commaPoint).toHaveBeenCalled();
-    expect(commaPoint).toHaveBeenCalledTimes(1);
+    expect(commaPoint(1650.705)).toBe('1,650.70');
   });
 
   test('se a função createLogos está funcionando corretamente', () => {
