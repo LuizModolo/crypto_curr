@@ -147,4 +147,3 @@ describe('Testando a funcionalidade do botão de submit', () => {
     expect(buttonEvent(error)).toEqual('E-mail inválido!');
   });
 });
-
