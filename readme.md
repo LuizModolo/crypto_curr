@@ -9,8 +9,24 @@ Ferramentas utilizadas:
 - **HTML**
 - **CSS**
 - **JAVASCRIPT**
+- **JEST**
 - **BIBLIOTECA BULMA**
 
 ## Instruções:
 
+### Aplicação online:
+
 Para acessar o site com o projeto rodando basta acessar [este link](https://caiojlima.github.io/crypto_curr/).
+
+### Testes
+
+Para rodar os testes siga os seguintes passos:
+
+Faça o clone da aplicação no seu terminal e entre na pasta `crypto_curr`:
+
+```
+git clone git@github.com:caiojlima/crypto_curr.git
+cd online-store
+```
+
+Ao entrar na pasta é só digitar `npm test` que os testes irão rodar localmente no seu terminal.
