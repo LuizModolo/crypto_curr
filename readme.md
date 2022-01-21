@@ -8,9 +8,9 @@ Esse projeto foi desenvolvido no final do módulo de Fundamentos do Desenvolvime
 
 ## Autores:
 
-  [Pedro Guarize](https://www.linkedin.com/in/pedroguarize/)
-  [Caio Lima](https://www.linkedin.com/in/caio-limah/)
-  [Thiago Monteiro](https://www.linkedin.com/in/thiagoacmonteiro/)
+ - [Pedro Guarize](https://www.linkedin.com/in/pedroguarize/).
+ - [Caio Lima](https://www.linkedin.com/in/caio-limah/).
+ - [Thiago Monteiro](https://www.linkedin.com/in/thiagoacmonteiro/).
 
 ## Stack utilizada:
 
