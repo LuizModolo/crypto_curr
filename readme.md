@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido no final do módulo de Fundamentos do Desenvolvime
 
 ## Deploy
 
-[Link para o deploy do projeto](crypto-curr.luizmodolo.dev).
+[Link para o deploy do projeto](https://crypto-curr.luizmodolo.dev).
 
 ## Instruções:
 
